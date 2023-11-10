@@ -1,0 +1,17 @@
+--- a/drivers/net/ethernet/intel/e1000e/netdev.c	2023-05-06 19:19:14.701569722 +0200
++++ b/drivers/net/ethernet/intel/e1000e/netdev.c	2023-05-06 19:20:09.105842784 +0200
+@@ -7272,6 +7272,14 @@
+ 	if ((hw->mac.type >= e1000_pch2lan) && (netdev->mtu > ETH_DATA_LEN))
+ 		features &= ~NETIF_F_RXFCS;
+ 
++	/* Fix for hang and reset when forwarding traffic to a client behind NAT,
++         * which affects some e1000e devices that have PCH2 device */
++        if (adapter->pdev->device == E1000_DEV_ID_PCH2_LV_V) {
++            e_info("Disabling TSO on problematic device to avoid hardware unit hang.\n");
++            features &= ~NETIF_F_TSO;
++            features &= ~NETIF_F_TSO6;
++        }
++
+ 	/* Since there is no support for separate Rx/Tx vlan accel
+ 	 * enable/disable make sure Tx flag is always in same state as Rx.
+ 	 */

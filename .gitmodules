@@ -1,0 +1,3 @@
+[submodule "builder_scripts"]
+	path = builder_scripts
+	url = https://github.com/Marcool04/pkgbuilds.git
