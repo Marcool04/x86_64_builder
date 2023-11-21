@@ -1,3 +1,6 @@
 [submodule "pkgbuilds/linux-fix-e1000e"]
 	path = pkgbuilds/linux-fix-e1000e
 	url = https://github.com/Marcool04/linux-fix-e1000e
+[submodule "builder_scripts"]
+	path = builder_scripts
+	url = https://github.com/Marcool04/pkgbuilds.git
