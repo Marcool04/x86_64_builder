@@ -58,7 +58,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           git add -A
-          git commit --allow-empty -m "Update packages ($(date '+%Y-%m-%d-%H-%M'))"
+          git commit --allow-empty -m "Post github-runner commit at $(date '+%Y-%m-%dT%H-%M')"
           git push
       - name: Publish release
         if: github.ref == 'refs/heads/main'
